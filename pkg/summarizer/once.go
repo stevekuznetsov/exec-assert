@@ -27,7 +27,7 @@ func (s *OnceDeclarerSummarizer) Declare(config api.ExecutionAssertionConfig) st
 
 	declaration.WriteString(fmt.Sprintf("executing %q once", config.Command))
 
-	assertionDescription := describeAssertions(", expecting ", config.ResultAssertion, config.OutputAssertions, config.OutputTests, config.Delimiter)
+	assertionDescription := describeAssertions(", expecting", config.ResultAssertion, config.OutputAssertions, config.OutputTests, config.Delimiter)
 	if len(assertionDescription) > 0 {
 		declaration.WriteString(assertionDescription)
 	}
@@ -63,9 +63,9 @@ func describeAssertions(actionPhrase, resultAssertion, outputAssertion, outputTe
 	}
 
 	if resultAssertionMeaningful {
-		description.WriteString(fmt.Sprintf("%s", resultAssertion))
+		description.WriteString(fmt.Sprintf(" %s", resultAssertion))
 		if outputAssertionsMeaningful {
-			description.WriteString(" and ")
+			description.WriteString(" and")
 		}
 	}
 
@@ -107,20 +107,20 @@ func (s *OnceDeclarerSummarizer) Summarize(results api.ExecutionAssertionResults
 			reasons = append(reasons, "the execution result assertion failed")
 		}
 		if !results.OutputAssertion {
-			reasons = append(reasons, "the execution output content test failed")
+			reasons = append(reasons, "the execution output assertion(s) failed")
 		}
 		summary.WriteString(fmt.Sprintf("%s\n", strings.Join(reasons, "; ")))
 	}
 
 	if !(results.ResultAssertion && results.OutputAssertion) || verbose {
 		if len(results.Stdout) > 0 {
-			summary.WriteString(fmt.Sprintf("Command output to stdout: \n%s\n", results.Stdout))
+			summary.WriteString(fmt.Sprintf("Command output to stdout:\n%s\n", results.Stdout))
 		} else {
 			summary.WriteString("Command did not output to stdout.\n")
 		}
 
 		if len(results.Stderr) > 0 {
-			summary.WriteString(fmt.Sprintf("Command output to stderr: \n%s\n", results.Stderr))
+			summary.WriteString(fmt.Sprintf("Command output to stderr:\n%s\n", results.Stderr))
 		} else {
 			summary.WriteString("Command did not output to stderr.\n")
 		}

@@ -28,7 +28,7 @@ func (s *UntilDeclarerSummarizer) Declare(config api.ExecutionAssertionConfig) s
 
 	declaration.WriteString(fmt.Sprintf("executing %q every %.3fs for %.3fs", config.Command, config.Interval.Seconds(), config.Timeout.Seconds()))
 
-	assertionDescription := describeAssertions(", or until ", config.ResultAssertion, config.OutputAssertions, config.OutputTests, config.Delimiter)
+	assertionDescription := describeAssertions(", or until", config.ResultAssertion, config.OutputAssertions, config.OutputTests, config.Delimiter)
 	if len(assertionDescription) > 0 {
 		declaration.WriteString(assertionDescription)
 	}
@@ -53,13 +53,13 @@ func (s *UntilDeclarerSummarizer) Summarize(results api.ExecutionAssertionResult
 
 	if !(results.ResultAssertion && results.OutputAssertion) || verbose {
 		if len(results.Stdout) > 0 {
-			summary.WriteString(fmt.Sprintf("Command output to stdout: \n%s", compressRecords(strings.Split(results.Stdout, util.RecordSeparator))))
+			summary.WriteString(fmt.Sprintf("Command output to stdout:\n%s", compressRecords(strings.Split(results.Stdout, util.RecordSeparator))))
 		} else {
 			summary.WriteString("Command did not output to stdout.\n")
 		}
 
 		if len(results.Stderr) > 0 {
-			summary.WriteString(fmt.Sprintf("Command output to stderr: \n%s", compressRecords(strings.Split(results.Stdout, util.RecordSeparator))))
+			summary.WriteString(fmt.Sprintf("Command output to stderr:\n%s", compressRecords(strings.Split(results.Stderr, util.RecordSeparator))))
 		} else {
 			summary.WriteString("Command did not output to stderr.\n")
 		}
@@ -87,7 +87,7 @@ func compressRecords(records []string) string {
 	// the second clumn contains a dashe `-` to signify that a record has ended. The third column
 	// contains output text.
 	var compressedRecords bytes.Buffer
-	tabbedWriter := tabwriter.NewWriter(&compressedRecords, 1, 2, 0, ' ', 0)
+	tabbedWriter := tabwriter.NewWriter(&compressedRecords, 2, 2, 0, ' ', 0)
 
 	for i := 0; i < len(sequentialRecords); i++ {
 		record, count := sequentialRecords[i], numOccurances[i]
