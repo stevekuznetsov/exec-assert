@@ -33,7 +33,7 @@ func (e *onceExecutor) Execute() (time.Duration, error, string, string, error) {
 
 	startTime := time.Now()
 
-	if err := command.Start(); err != nil {
+	if err = command.Start(); err != nil {
 		return 0, nil, "", "", fmt.Errorf("failed to start command execution: %v", err)
 	}
 
