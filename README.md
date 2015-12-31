@@ -7,7 +7,7 @@
 `exec-assert` can be built from the repository root with:
 
 ```sh
-$ go build .
+$ make build
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ To run a command (`date`) without regard to its return code until its output con
 ```sh
 $ $ ./exec-assert --execute until --result ambivalent --output contains --test '\:2{2}' -v 'date'
 executing "date" every 0.200s for 60.000s, or until success and output that contains `\:2{2}`
-SUCCESS after 0.611s: executing "date" every 0.200s for 60.000s, or until success and output that contains `\:2{2}`
+SUCCESS after 1.611s: executing "date" every 0.200s for 60.000s, or until success and output that contains `\:2{2}`
 Command output to stdout: 
 5x  Wed Dec 30 15:49:20 MST 2015
   --
@@ -68,6 +68,8 @@ Command output to stdout:
 1x  Wed Dec 30 15:49:22 MST 2015
 Command did not output to stderr.
 ```
+
+More examples of usage can be found in the [integration test](test/cmd.sh).
 
 ### Correctly Quoting Text and Variables
 To run a command that doesn't contain any quoted text, quote the argument to `exec-assert` with single or double quotes:
@@ -91,4 +93,11 @@ To run a command that contains something that looks like a bash variable, but is
 ```sh
 $ myvar=value
 $ exec-assert "echo '\$myvar=${myvar}'"
+```
+
+### Contributing
+
+Contributions are welcome to this repository. All pull requests will be tested by applying `go vet` for linting, `go test` for unit testing, and running `test/cmd.sh` for integation testing. All of these tests can be run locally with:
+```sh
+$ make verify
 ```
