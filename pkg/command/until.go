@@ -38,7 +38,7 @@ type untilExecutor struct {
 	interval time.Duration
 }
 
-// Execute executes the command in a subshell using `bash -c` until the assertions are met and returns the result and output
+// Execute executes the command using `bash -c` until the assertions are met and returns the result and output
 func (e *untilExecutor) Execute() (time.Duration, error, string, string, error) {
 	var results []error
 	var stdouts, stderrs []string

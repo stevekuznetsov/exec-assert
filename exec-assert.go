@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	// command is the command to execute in a subshell, the failure or success
-	// of which test is interpreted in the context of the resultAssertion
+	// command is the command to execute, the failure or success of which is interpreted
+	// in the context of the resultAssertion
 	command string
 
 	// executionStrategy is the strategy to use for executing the bash command
@@ -66,17 +66,16 @@ func init() {
 }
 
 const (
-	execAssertLong = `Execute a bash command in a subshell and assert something about its result and output.
+	execAssertLong = `Execute a bash command and assert something about its result and output.
 
-Consumes a fully-formed bash command as a single argument and executes it in a subshell by invoking 'bash -c'.
-Assertions can be made about the result of the command, the output to stdout and the output to stderr. This tool
-will fail unless all assertions made about the execution of the given bash command succeed. This tool can execute
-the command just once and inspect its result and output, or it can execute the command until the result and/out 
-output assertions are met. When executing until a set of assertions are met, both a timeout and interval between
-executions are set. Output to stdout and stderr from the command is captured but only shown if assertions fail.
-Set '-v' to true to use verbose output and always display output. Any regular expressions passed in as tests 
-must not allow the shell to interpret back-slashes within them as escape characters. In bash, this can be 
-accomplished by prepending the string with a dollar sign: $'text'.
+Consumes a fully-formed bash command as a single argument and executes it by invoking 'bash -c'. Assertions can
+be made about the result of the command, the output to stdout and the output to stderr. This tool will fail unless
+all assertions made about the execution of the given bash command succeed. This tool can execute the command just
+once and inspect its result and output, or it can execute the command until the result and/out output assertions
+are met. When executing until a set of assertions are met, both a timeout and interval between executions are set.
+Output to stdout and stderr from the command is captured but only shown if assertions fail. Set '-v' to use verbose
+output and always display output. Any regular expressions passed in as tests must not allow the shell to interpret
+back-slashes within them as escape characters.
 `
 
 	execAssertUsage = `Usage:
@@ -158,9 +157,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := options.Run(); err != nil {
+	result, err := options.Run()
+	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error executing: %v\n", err)
 		os.Exit(1)
 	}
-	os.Exit(0)
+	if result {
+		os.Exit(0)
+	} else {
+		os.Exit(1)
+	}
 }

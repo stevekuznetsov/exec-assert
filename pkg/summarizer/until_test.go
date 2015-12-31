@@ -25,7 +25,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until success\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until success\n",
 		},
 		{
 			name: "expecting success and text",
@@ -38,7 +38,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until success and output that contains `text`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until success and output that contains `text`\n",
 		},
 		{
 			name: "expecting success and not text",
@@ -51,7 +51,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until success and output that doesn't contain `text`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until success and output that doesn't contain `text`\n",
 		},
 		{
 			name: "expecting success with multiple output assertions",
@@ -65,7 +65,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until success and output that doesn't contain `text`, and contains `othertext`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until success and output that doesn't contain `text`, and contains `othertext`\n",
 		},
 		{
 			name: "expecting failure",
@@ -77,7 +77,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until failure\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until failure\n",
 		},
 		{
 			name: "expecting failure and text",
@@ -90,7 +90,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until failure and output that contains `text`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until failure and output that contains `text`\n",
 		},
 		{
 			name: "expecting failure and not text",
@@ -103,7 +103,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until failure and output that doesn't contain `text`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until failure and output that doesn't contain `text`\n",
 		},
 		{
 			name: "expecting failure with multiple output assertions",
@@ -117,7 +117,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until failure and output that doesn't contain `text`, and contains `othertext`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until failure and output that doesn't contain `text`, and contains `othertext`\n",
 		},
 		{
 			name: "expecting text",
@@ -130,7 +130,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until output that contains `text`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until output that contains `text`\n",
 		},
 		{
 			name: "multiple text assertions",
@@ -144,7 +144,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until output that contains `text`, and doesn't contain `othertext`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until output that contains `text`, and doesn't contain `othertext`\n",
 		},
 		{
 			name: "many text assertions",
@@ -158,7 +158,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "executing \"command\" every 0.200s for 60.000s, or until output that contains `text`, contains `secondtext`, contains `thirdtext`, and doesn't contain `othertext`\n",
+			expectedDeclaration: "executing `command` every 0.200s for 60.000s, or until output that contains `text`, contains `secondtext`, contains `thirdtext`, and doesn't contain `othertext`\n",
 		},
 		{
 			name: "named expecting success",
@@ -171,7 +171,7 @@ func TestUntilDeclare(t *testing.T) {
 				Timeout:           60 * time.Second,
 				Interval:          200 * time.Millisecond,
 			},
-			expectedDeclaration: "test name: executing \"command\" every 0.200s for 60.000s, or until success\n",
+			expectedDeclaration: "test name: executing `command` every 0.200s for 60.000s, or until success\n",
 		},
 	}
 

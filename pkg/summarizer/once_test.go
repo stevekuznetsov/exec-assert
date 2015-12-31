@@ -21,7 +21,7 @@ func TestOnceDeclare(t *testing.T) {
 				ResultAssertion:   "ambivalent",
 				OutputAssertions:  "ambivalent",
 			},
-			expectedDeclaration: "executing \"command\" once\n",
+			expectedDeclaration: "executing `command` once\n",
 		},
 		{
 			name: "expecting success",
@@ -31,7 +31,7 @@ func TestOnceDeclare(t *testing.T) {
 				ResultAssertion:   "success",
 				OutputAssertions:  "ambivalent",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting success\n",
+			expectedDeclaration: "executing `command` once, expecting success\n",
 		},
 		{
 			name: "expecting success and text",
@@ -42,7 +42,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputAssertions:  "contains",
 				OutputTests:       "text",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting success and output that contains `text`\n",
+			expectedDeclaration: "executing `command` once, expecting success and output that contains `text`\n",
 		},
 		{
 			name: "expecting success and not text",
@@ -53,7 +53,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputAssertions:  "excludes",
 				OutputTests:       "text",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting success and output that doesn't contain `text`\n",
+			expectedDeclaration: "executing `command` once, expecting success and output that doesn't contain `text`\n",
 		},
 		{
 			name: "expecting success with multiple output assertions",
@@ -65,7 +65,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputTests:       "text,othertext",
 				Delimiter:         ",",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting success and output that doesn't contain `text`, and contains `othertext`\n",
+			expectedDeclaration: "executing `command` once, expecting success and output that doesn't contain `text`, and contains `othertext`\n",
 		},
 		{
 			name: "expecting failure",
@@ -75,7 +75,7 @@ func TestOnceDeclare(t *testing.T) {
 				ResultAssertion:   "failure",
 				OutputAssertions:  "ambivalent",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting failure\n",
+			expectedDeclaration: "executing `command` once, expecting failure\n",
 		},
 		{
 			name: "expecting failure and text",
@@ -86,7 +86,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputAssertions:  "contains",
 				OutputTests:       "text",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting failure and output that contains `text`\n",
+			expectedDeclaration: "executing `command` once, expecting failure and output that contains `text`\n",
 		},
 		{
 			name: "expecting failure and not text",
@@ -97,7 +97,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputAssertions:  "excludes",
 				OutputTests:       "text",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting failure and output that doesn't contain `text`\n",
+			expectedDeclaration: "executing `command` once, expecting failure and output that doesn't contain `text`\n",
 		},
 		{
 			name: "expecting failure with multiple output assertions",
@@ -109,7 +109,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputTests:       "text,othertext",
 				Delimiter:         ",",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting failure and output that doesn't contain `text`, and contains `othertext`\n",
+			expectedDeclaration: "executing `command` once, expecting failure and output that doesn't contain `text`, and contains `othertext`\n",
 		},
 		{
 			name: "expecting text",
@@ -120,7 +120,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputAssertions:  "contains",
 				OutputTests:       "text",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting output that contains `text`\n",
+			expectedDeclaration: "executing `command` once, expecting output that contains `text`\n",
 		},
 		{
 			name: "multiple text assertions",
@@ -132,7 +132,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputTests:       "text,othertext",
 				Delimiter:         ",",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting output that contains `text`, and doesn't contain `othertext`\n",
+			expectedDeclaration: "executing `command` once, expecting output that contains `text`, and doesn't contain `othertext`\n",
 		},
 		{
 			name: "many text assertions",
@@ -144,7 +144,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputTests:       "text,secondtext,thirdtext,othertext",
 				Delimiter:         ",",
 			},
-			expectedDeclaration: "executing \"command\" once, expecting output that contains `text`, contains `secondtext`, contains `thirdtext`, and doesn't contain `othertext`\n",
+			expectedDeclaration: "executing `command` once, expecting output that contains `text`, contains `secondtext`, contains `thirdtext`, and doesn't contain `othertext`\n",
 		},
 		{
 			name: "named expecting success",
@@ -155,7 +155,7 @@ func TestOnceDeclare(t *testing.T) {
 				OutputAssertions:  "ambivalent",
 				Name:              "test name",
 			},
-			expectedDeclaration: "test name: executing \"command\" once, expecting success\n",
+			expectedDeclaration: "test name: executing `command` once, expecting success\n",
 		},
 	}
 

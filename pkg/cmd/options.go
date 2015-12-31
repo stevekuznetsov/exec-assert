@@ -11,7 +11,7 @@ import (
 	"github.com/stevekuznetsov/exec-assert/pkg/summarizer"
 )
 
-// ExecuteAssertOptions is able to run a bash command in a subshell and make assertions about the
+// ExecuteAssertOptions is able to run a bash command and make assertions about the
 // result of the execution as well as any output to stdout or stderr.
 type ExecuteAssertOptions struct {
 	// Config is the configuration for the test
@@ -127,7 +127,7 @@ func (o *ExecuteAssertOptions) Validate() error {
 }
 
 // Run runs the command, capturing output to stdout and stderr, then evaluates the assertions about the result and output of the command
-func (o *ExecuteAssertOptions) Run() error {
+func (o *ExecuteAssertOptions) Run() (bool, error) {
 	var builder Builder
 	switch o.executionStrategy {
 	case api.ExecutionStrategyOnce:
@@ -144,10 +144,10 @@ func (o *ExecuteAssertOptions) Run() error {
 
 	results, err := executorAsserter.ExecuteAndAssert()
 	if err != nil {
-		return fmt.Errorf("command execution failed: %v", err)
+		return false, fmt.Errorf("command execution failed: %v", err)
 	}
 
 	fmt.Fprint(o.Output, summarizer.Summarize(results, o.Config.Verbose))
 
-	return nil
+	return results.ResultAssertion && results.OutputAssertion, nil
 }

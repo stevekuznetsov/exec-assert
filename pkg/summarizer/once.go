@@ -25,7 +25,7 @@ func (s *OnceDeclarerSummarizer) Declare(config api.ExecutionAssertionConfig) st
 		declaration.WriteString(fmt.Sprintf("%s: ", config.Name))
 	}
 
-	declaration.WriteString(fmt.Sprintf("executing %q once", config.Command))
+	declaration.WriteString(fmt.Sprintf("executing %#q once", config.Command))
 
 	assertionDescription := describeAssertions(", expecting", config.ResultAssertion, config.OutputAssertions, config.OutputTests, config.Delimiter)
 	if len(assertionDescription) > 0 {

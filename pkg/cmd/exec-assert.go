@@ -17,7 +17,7 @@ func NewExecutorAsserter(commandExecutor command.Executor, resultTester result.T
 	}
 }
 
-// executorAsserter is able to run a bash command in a subshell and make assertions about the
+// executorAsserter is able to run a bash command and make assertions about the
 // result of the execution as well as any output to stdout or stderr.
 type executorAsserter struct {
 	// commandExecutor executes the command and collects the output to stdout and stderr

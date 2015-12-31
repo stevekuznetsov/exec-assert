@@ -18,7 +18,7 @@ type onceExecutor struct {
 	command string
 }
 
-// Execute executes the command in a subshell using `bash -c` and returns the execution duration, result and output
+// Execute executes the command using `bash -c` and returns the execution duration, result and output
 func (e *onceExecutor) Execute() (time.Duration, error, string, string, error) {
 	command := exec.Command("bash", "-c", e.command)
 	stdoutPipe, err := command.StdoutPipe()

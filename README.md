@@ -55,9 +55,9 @@ executing "grep" once, expecting failure
 SUCCESS after 0.003s: executing "grep" once, expecting failure
 ```
 
-To run a command (`date`) until its output contains a regular expression (`\:2{2}`), choosing verbose execution to see the command's output:
+To run a command (`date`) without regard to its return code until its output contains a regular expression (`\:2{2}`), choosing verbose execution to see the command's output:
 ```sh
-$ $ ./exec-assert --execute until --output contains --test '\:2{2}' -v 'date'
+$ $ ./exec-assert --execute until --result ambivalent --output contains --test '\:2{2}' -v 'date'
 executing "date" every 0.200s for 60.000s, or until success and output that contains `\:2{2}`
 SUCCESS after 0.611s: executing "date" every 0.200s for 60.000s, or until success and output that contains `\:2{2}`
 Command output to stdout: 
@@ -67,4 +67,28 @@ Command output to stdout:
   --
 1x  Wed Dec 30 15:49:22 MST 2015
 Command did not output to stderr.
+```
+
+### Correctly Quoting Text and Variables
+To run a command that doesn't contain any quoted text, quote the argument to `exec-assert` with single or double quotes:
+```sh
+$ exec-assert 'ls -lAhR'
+$ exec-assert "ls -lAhR"
+```
+
+To run a command that contains literal text, quote the arguemnt to `exec-assert` with double quotes and the literal text with single quotes:
+```sh
+$ exec-assert "echo 'string'"
+```
+
+To run a command that contains a bash variable, the argument to `exec-assert` *must* be quoted with double quotes for the variable to be expanded correctly:
+```sh
+$ myvar=value
+$ exec-assert "echo 'expression containing ${myvar}'"
+```
+
+To run a command that contains something that looks like a bash variable, but isn't, or a bash variable that you do not want to be expanded, escape the `$` with a forward slash in the argument to `exec-assert`:
+```sh
+$ myvar=value
+$ exec-assert "echo '\$myvar=${myvar}'"
 ```

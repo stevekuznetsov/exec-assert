@@ -26,7 +26,7 @@ func (s *UntilDeclarerSummarizer) Declare(config api.ExecutionAssertionConfig) s
 		declaration.WriteString(fmt.Sprintf("%s: ", config.Name))
 	}
 
-	declaration.WriteString(fmt.Sprintf("executing %q every %.3fs for %.3fs", config.Command, config.Interval.Seconds(), config.Timeout.Seconds()))
+	declaration.WriteString(fmt.Sprintf("executing %#q every %.3fs for %.3fs", config.Command, config.Interval.Seconds(), config.Timeout.Seconds()))
 
 	assertionDescription := describeAssertions(", or until", config.ResultAssertion, config.OutputAssertions, config.OutputTests, config.Delimiter)
 	if len(assertionDescription) > 0 {
