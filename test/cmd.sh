@@ -77,7 +77,7 @@ unset test_var
 ./exec-assert --output 'contains,contains' --test 'options,interfaces' --delimiter ',' -v 'ls pkg/cmd/{option,interface}s.go'
 
 # Logic
-./exec-assert "if true; then exit 0; else exit 1; fi"
+./exec-assert 'if true; then exit 0; else exit 1; fi'
 
 # Integer arithmetic
 ./exec-assert --output contains --test '19' 'echo $(( 20 - 1 ))'

@@ -105,8 +105,12 @@ $ myvar=value
 $ exec-assert "echo '\$myvar=${myvar}'"
 ```
 
-### Notes
-Al 
+### Caveats
+All commands are executed using `bash -c`, and, therefore are *not* run in a sub-shell. Commands can not set or change variables in any way visible to the shell calling `exec-assert`. 
+
+Bash variables that are to be used in the command must be expanded before they are passed to `exec-assert`, by enclosing the command argument to `exec-assert` with double quotes. 
+
+`exec-assert` can only test the output of a command being executed if the output is visible to `stdout` or `stderr`. Misdirection of `stderr` or `stdout` (*e.g.* `2>/dev/null`) will make the output being misdirected invisible to `exec-assert` and therefore not testable by output assertions. 
 
 ### Contributing
 
