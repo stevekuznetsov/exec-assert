@@ -343,6 +343,14 @@ func TestCompressRecords(t *testing.T) {
 3x  first line
 `,
 		},
+		{
+			name:    "non-unique multi-line records",
+			records: []string{"first line\nsecond line\nthird line", "first line\nsecond line\nthird line", "first line\nsecond line\nthird line"},
+			expectedCompression: `3x  first line
+    second line
+    third line
+`,
+		},
 	}
 
 	for _, testCase := range testCases {

@@ -84,7 +84,7 @@ func compressRecords(records []string) string {
 
 	// in order to pretty-print these records, we create a tabwriter and format the text as follows:
 	// the first column will contain the number of repeats of whatever record is being printed,
-	// the second clumn contains a dashe `-` to signify that a record has ended. The third column
+	// the second column contains dashes `--` to signify that a record has ended. The third column
 	// contains output text.
 	var compressedRecords bytes.Buffer
 	tabbedWriter := tabwriter.NewWriter(&compressedRecords, 2, 2, 0, ' ', 0)

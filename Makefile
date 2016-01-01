@@ -37,9 +37,9 @@ lint:
 #
 # Examples:
 #   make check
-#   make check GOFLAGS=-cover
+#   make check GOFLAGS=-coverprofile=coveragefile.out
 check:
-	go test $(GOFLAGS) -v ./...
+	go test $(GOFLAGS) -v -cover -covermode=count ./...
 
 # Run all tests
 #
@@ -48,7 +48,7 @@ check:
 #
 # Examples:
 #   make test
-#   make test GOTESTFLAGS=-cover
+#   make test GOTESTFLAGS=-coverprofile=coveragefile.out
 test:
 	$(MAKE) check GOFLAGS=$(GOTESTFLAGS)
 	test/cmd.sh
@@ -61,7 +61,7 @@ test:
 #
 # Examples:
 #   make verify
-#   make verify GOTESTFLAGS=-cover
+#   make verify GOTESTFLAGS=-coverprofile=coveragefile.out
 #   make verify GOVETFLAGS=-shadowstrict
 verify:
 	$(MAKE) lint GOVETFLAGS=$(GOVETFLAGS)
